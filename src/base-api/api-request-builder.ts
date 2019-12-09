@@ -1,0 +1,126 @@
+import { ApiQueryOperator } from './api-query-operator';
+import { QueryOperator } from './query-operator';
+import { ApiQuery } from './api-query';
+
+export class ApiRequestBuilder {
+    /**
+     * Gets the regular expression used to parse the lambda expression. ie:  x => x.firstName === value.firstName
+     */
+    private expressionRegExp = new RegExp(/(.+[^=!><])(!={1,3}|<=|>=|>|<|={1,3})\s*(.+);\s*\}/);
+    private expressions: Array<string> = new Array<string>();
+
+    public static readonly operators: Array<ApiQueryOperator> = [
+        new ApiQueryOperator(QueryOperator.equals, '=', ['==', '===']),
+        new ApiQueryOperator(QueryOperator.exists, 'exists', ['exists()']), // TODO: Make API support methods like  foo.field.exists()
+        new ApiQueryOperator(QueryOperator.notEquals, '!=', ['!=', '!==']),
+        new ApiQueryOperator(QueryOperator.in, '=', []),
+        new ApiQueryOperator(QueryOperator.notIn, '!=', []),
+        new ApiQueryOperator(QueryOperator.greaterThan, '>', ['>']),
+        new ApiQueryOperator(QueryOperator.lessThan, '<', ['<']),
+        new ApiQueryOperator(QueryOperator.greaterThanEqualTo, '>=', ['>=']),
+        new ApiQueryOperator(QueryOperator.lessThanEqualTo, '<=', ['<=']),
+    ];
+
+    public readonly predicates = {
+        or: '||',
+        and: '&&',
+        lambda: 'return ',
+    };
+    
+
+    private query: Array<ApiQuery> = new Array<ApiQuery>();
+
+    /**
+     * Returns an array of ApiQuery objects from the given expression and parameters.
+     * @param expression - string representation of the expression to build the query for.
+     * @param parameters - object with properties representing the parameters in the expression.
+     */
+    public buildQueryFromExpression(expression: string, parameters?: any): Array<ApiQuery> {
+        this.expressions = this.prepareExpression(expression.toString());
+        this.buildQueryPredicate(parameters);
+        return this.query;
+    }
+
+    public static getOperator(value: string): ApiQueryOperator {
+        return ApiRequestBuilder.operators
+            .find((operator) => !!operator.matches.find((match) => value === match));
+    }
+
+    public static getByQueryOperator(value: QueryOperator): ApiQueryOperator {
+        return ApiRequestBuilder.operators
+            .find((operator) => operator.name === value);
+    }
+
+    private prepareExpression(expression: string): Array<string> {
+        if (expression.includes(this.predicates.or)) {
+            // TODO@zev.butler: Implement reading operators to support and, or, etc.
+            throw new Error(`The operator ${this.predicates.or} (or) is not yet supported. Use && or write a custom query in the microservice.`)
+        }
+
+        expression = expression.slice(expression.indexOf(this.predicates.lambda) + 6);
+        return expression.split(this.predicates.and);
+    }
+
+    private buildQueryPredicate(parameters?: any): void {
+        if (!this.expressions) {
+            throw new Error('No expressions were found to build predicates from.');
+        }
+
+        for (let predicate of this.expressions) {
+            const predicateMatch = this.expressionRegExp.exec(predicate);
+
+            if (!predicateMatch || predicateMatch.length < 3) {
+                throw new Error(`Error in specified expression on: ${predicate}`);
+            }
+
+            const name = this.parsePropertyName(predicateMatch[1]);
+            const apiQueryOperator = this.parseOperator(predicateMatch[2]);
+            const parameterName = this.parsePropertyName(predicateMatch[3]);
+            const value = this.checkValueType(parameters, parameterName);
+
+            if (value) {
+                const query = new ApiQuery({
+                    name,
+                    value,
+                    apiQueryOperator
+                });
+                this.query.push(query);
+            }
+        }
+    }
+
+    private checkValueType(parameters: any, parameterName: any): string {
+        let value;
+
+        if (parameterName.includes('.')) {
+            const values = parameterName.split('.');
+
+            let recursionValue = parameters;
+            for (let propertyName of values) {
+                recursionValue = recursionValue[propertyName];
+            }
+            value = recursionValue;
+        } else {
+            value = parameters[parameterName];
+        }
+
+        if (value instanceof Date) {
+            return (value as Date).toLocaleString();
+        }
+        return value;
+    }
+    
+    private parseOperator(providedOperator: string): ApiQueryOperator {
+        const matchedOperator = ApiRequestBuilder.getOperator(providedOperator);
+
+        if (!matchedOperator) {
+            throw new Error(`The Operator provided '${providedOperator}' is invalid or not supported.`);
+        }
+
+        return matchedOperator;
+    }
+
+    private parsePropertyName(value: string): string {
+        return value.slice(value.indexOf('.') + 1).trim();
+    }
+}

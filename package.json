@@ -1,0 +1,30 @@
+{
+    "name": "@mdr/models",
+    "private": false,
+    "version": "1.4.0",
+    "description": "Temporary library for holding the Framework shared across the MDR application. Soon to be separated out as ClearlyAgile's nMadre Node Framework.",
+    "files": [
+        "dist"
+    ],
+    "main": "dist/index.js",
+    "typings": "dist/types/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "test": "echo \"TODO@CA-Team: Implement unit tests\" && exit 1",
+        "build": "tsc --module commonjs",
+        "build:publish": "tsc && npm version patch && npm publish"
+    },
+    "author": "ClearlyAgile, Inc. <zbutler@clearlyagileinc.com>",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^12.7.5",
+        "typescript": "^3.5.2"
+    },
+    "gitHead": "664d6cd8414706f6a36fac382cb90b68fc29c528"
+}
