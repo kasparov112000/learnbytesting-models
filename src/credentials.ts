@@ -1,4 +1,3 @@
-import { IdamApplicationUser } from '@easydevops/pwc-us-agc-logger';
 import { Role } from './role';
 
 export class Credentials {
