@@ -10,16 +10,16 @@ export class ProjectStep {
     public documents: Array<ProjectDocument> = new Array<ProjectDocument>();
     public permissions: Array<ProjectPermissions> = new Array<ProjectPermissions>();
 
-    public get isActivated() {
-        return this.status === Status.inProgress
-            || this.status === Status.complete
-            || this.documents.length > 0;
-    }
-
     constructor(name: string, friendlyName: string) {
         this.name = name;
         this.friendlyName = friendlyName;
         this.status = Status.notStarted;
+    }
+
+    public isActivated(): boolean {
+        return this.status === Status.inProgress
+            || this.status === Status.complete
+            || this.documents.length > 0;
     }
 
     /**
