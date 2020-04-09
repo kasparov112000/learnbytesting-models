@@ -6,4 +6,5 @@ export enum RoleType {
     documentAuthor = 4,
     staffUser = 5,
     invitedUser = 6,
+    documentPowerAuthor = 7    
 }
