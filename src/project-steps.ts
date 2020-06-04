@@ -6,6 +6,7 @@ export class ProjectSteps {
     public authorCreateDrafts: ProjectStep = new ProjectStep('authorCreateDrafts', 'Author Create Drafts');
     public createReviewApproval: ProjectStep = new ProjectStep('createReviewApproval', 'Owner Review Approval');
     public uploadToStage: ProjectStep = new ProjectStep('uploadToStage', 'Publish to Stage');
+    public OwnerReviewandApproval: ProjectStep = new ProjectStep('OwnerReviewandApproval', 'Owner Review and Approval');
     public uploadToCreate: ProjectStep = new ProjectStep('uploadToCreate', 'Publish to Create');
     public ownerAttestationCreate: ProjectStep = new ProjectStep('ownerAttestationCreate', 'Owner Attestation of Create Documents');
     public authorLibraryDrafts: ProjectStep = new ProjectStep('authorLibraryDrafts', 'Author Library Drafts');
