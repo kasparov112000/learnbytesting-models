@@ -1,5 +1,5 @@
 {
-    "name": "@mdr/models",
+    "name": "@hipolito/models",
     "private": false,
     "version": "1.5.10",
     "description": "Temporary library for holding the Framework shared across the MDR application. Soon to be separated out as ClearlyAgile's nMadre Node Framework.",
