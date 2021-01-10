@@ -1,7 +1,7 @@
 {
     "name": "@hipolito/models",
     "private": false,
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "general models as blueprint for future projects",
     "files": [
         "dist"
@@ -25,5 +25,5 @@
     "devDependencies": {
         "@types/node": "^12.7.5",
         "typescript": "^3.5.2"
-    }    
+    }
 }
