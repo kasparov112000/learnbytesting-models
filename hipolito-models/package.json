@@ -1,8 +1,8 @@
 {
     "name": "@hipolito/models",
     "private": false,
-    "version": "1.5.10",
-    "description": "Temporary library for holding the Framework shared across the MDR application. Soon to be separated out as ClearlyAgile's nMadre Node Framework.",
+    "version": "1.0.1",
+    "description": "general models as blueprint for future projects",
     "files": [
         "dist"
     ],
@@ -20,11 +20,11 @@
         "build": "tsc --module commonjs",
         "build:publish": "tsc && npm version patch && npm publish"
     },
-    "author": "ClearlyAgile, Inc. <zbutler@clearlyagileinc.com>",
+    "author": "Hipolito Nunez 212marines@gmail.com",
     "license": "ISC",
     "devDependencies": {
         "@types/node": "^12.7.5",
         "typescript": "^3.5.2"
     },
-    "gitHead": "664d6cd8414706f6a36fac382cb90b68fc29c528"
+    
 }
