@@ -1,7 +1,7 @@
 {
     "name": "@mdr/models",
     "private": false,
-    "version": "1.5.7",
+    "version": "1.5.8",
     "description": "Temporary library for holding the Framework shared across the MDR application. Soon to be separated out as ClearlyAgile's nMadre Node Framework.",
     "files": [
         "dist"
