@@ -69,14 +69,14 @@ export class ApiRequestBuilder {
         for (let predicate of this.expressions) {
             const predicateMatch = this.expressionRegExp.exec(predicate);
 
-            if (!predicateMatch || predicateMatch.length < 3) {
-                console.error('this.expressions', this.expressions);
-                console.error('pedicatematch', predicateMatch);
-                console.error('predicatematchlength', predicateMatch.length);
+            // if (!predicateMatch || predicateMatch.length < 3) {
+            //     console.error('this.expressions', this.expressions);
+            //     console.error('pedicatematch', predicateMatch);
+            //     console.error('predicatematchlength', predicateMatch.length);
 
 
-                throw new Error(`Error in specified expression on: ${predicate}`);
-            }
+            //     throw new Error(`Error in specified expression on: ${predicate}`);
+            // }
 
             const name = this.parsePropertyName(predicateMatch[1]);
             const apiQueryOperator = this.parseOperator(predicateMatch[2]);
