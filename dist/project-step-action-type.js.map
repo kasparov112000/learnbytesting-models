@@ -1,0 +1,1 @@
+{"version":3,"file":"project-step-action-type.js","sourceRoot":"","sources":["../src/project-step-action-type.ts"],"names":[],"mappings":";;AAAA,IAAY,qBAGX;AAHD,WAAY,qBAAqB;IAC7B,0CAAiB,CAAA;IACjB,4CAAmB,CAAA;AACvB,CAAC,EAHW,qBAAqB,GAArB,6BAAqB,KAArB,6BAAqB,QAGhC","sourcesContent":["export enum ProjectStepActionType {\r\n    demote = 'demote',\r\n    promote = 'promote',\r\n}"]}

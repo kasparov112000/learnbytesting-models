@@ -1,0 +1,1 @@
+{"version":3,"file":"file-type.js","sourceRoot":"","sources":["../src/file-type.ts"],"names":[],"mappings":";;AAAA,IAAY,QAIX;AAJD,WAAY,QAAQ;IAChB,uBAAW,CAAA;IACX,yBAAa,CAAA;IACb,2CAA+B,CAAA;AACnC,CAAC,EAJW,QAAQ,GAAR,gBAAQ,KAAR,gBAAQ,QAInB","sourcesContent":["export enum FileType {\r\n    pdf = 'pdf',\r\n    word = 'word',\r\n    notApplicable = 'notApplicable',\r\n}"]}

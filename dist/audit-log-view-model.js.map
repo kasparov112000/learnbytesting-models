@@ -1,0 +1,1 @@
+{"version":3,"file":"audit-log-view-model.js","sourceRoot":"","sources":["../src/audit-log-view-model.ts"],"names":[],"mappings":";;AAAA;IAAA;IAIA,CAAC;IAAD,wBAAC;AAAD,CAAC,AAJD,IAIC;AAJY,8CAAiB","sourcesContent":["export class AuditLogViewModel {\r\n    public name: string;\r\n    public details: string;\r\n    public dateTime: Date;\r\n}"]}

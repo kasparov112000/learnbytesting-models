@@ -1,0 +1,1 @@
+{"version":3,"file":"file-category.js","sourceRoot":"","sources":["../src/file-category.ts"],"names":[],"mappings":";;AAAA,IAAY,YAGX;AAHD,WAAY,YAAY;IACpB,qCAAqB,CAAA;IACrB,yCAAyB,CAAA;AAC7B,CAAC,EAHW,YAAY,GAAZ,oBAAY,KAAZ,oBAAY,QAGvB","sourcesContent":["export enum FileCategory {\r\n    document = 'document',\r\n    attachment = 'attachment',\r\n}"]}

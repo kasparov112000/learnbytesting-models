@@ -1,0 +1,1 @@
+{"version":3,"file":"user-info.js","sourceRoot":"","sources":["../src/user-info.ts"],"names":[],"mappings":";;AAAA;IAAA;IAKA,CAAC;IAAD,eAAC;AAAD,CAAC,AALD,IAKC;AALY,4BAAQ","sourcesContent":["export class UserInfo {\r\n    firstName: string;\r\n    lastName: string;\r\n    displayName: string;\r\n    guid: string;\r\n}"]}

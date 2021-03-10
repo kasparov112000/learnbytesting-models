@@ -1,0 +1,1 @@
+{"version":3,"file":"audit-log-level.js","sourceRoot":"","sources":["../src/audit-log-level.ts"],"names":[],"mappings":";;AAAA,IAAY,aAIX;AAJD,WAAY,aAAa;IACrB,+DAAe,CAAA;IACf,uDAAW,CAAA;IACX,mDAAS,CAAA;AACb,CAAC,EAJW,aAAa,GAAb,qBAAa,KAAb,qBAAa,QAIxB","sourcesContent":["export enum AuditLogLevel {\r\n    information = 1,\r\n    warning = 2,\r\n    error = 3,\r\n}"]}

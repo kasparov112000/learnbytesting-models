@@ -70,6 +70,11 @@ export class ApiRequestBuilder {
             const predicateMatch = this.expressionRegExp.exec(predicate);
 
             if (!predicateMatch || predicateMatch.length < 3) {
+                console.error('this.expressions', this.expressions);
+                console.error('pedicatematch', predicateMatch);
+                console.error('predicatematchlength', predicateMatch.length);
+
+
                 throw new Error(`Error in specified expression on: ${predicate}`);
             }
 

@@ -1,0 +1,1 @@
+{"version":3,"file":"lookup-item.js","sourceRoot":"","sources":["../src/lookup-item.ts"],"names":[],"mappings":";;AAAA;IAAA;IAGA,CAAC;IAAD,iBAAC;AAAD,CAAC,AAHD,IAGC;AAHY,gCAAU","sourcesContent":["export class LookupItem {\r\n    public _id?: string;\r\n    public name: string;\r\n}"]}
