@@ -95,9 +95,9 @@ export class ApiRequestBuilder {
                 throw new Error(`Error in specified expression on: ${predicate}`);
             }
 
-            const name = this.parsePropertyName(predicateMatch[1]);
-            const apiQueryOperator = this.parseOperator(predicateMatch[2]);
-            const parameterName = this.parsePropertyName(predicateMatch[3]);
+            const name = this.parsePropertyName(predicateMatch[0]);
+            const apiQueryOperator = this.parseOperator(predicateMatch[1]);
+            const parameterName = this.parsePropertyName(predicateMatch[2]);
             const value = this.checkValueType(parameters, parameterName);
 
             if (value) {
