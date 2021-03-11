@@ -78,7 +78,9 @@ export class ApiRequestBuilder {
         }
 
         for (let predicate of this.expressions) {
-            const predicateMatch = this.expressionRegExp.exec(predicate);
+            // const predicateMatch = this.expressionRegExp.exec(predicate);
+            const predicateMatch = predicate.split(' ');
+
                 console.log('this.expressionRegExp: ', this.expressionRegExp);
                 console.log('this.expressions', this.expressions);
                 console.log('pedicatematch', predicateMatch);
