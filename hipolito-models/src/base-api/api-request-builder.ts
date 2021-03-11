@@ -4,7 +4,7 @@ import { ApiQuery } from './api-query';
 
 export class ApiRequestBuilder {
     /**
-     * Gets the regular expression used to parse the lambda expression. ie:  x => x.firstName === value.firstName
+     * Gets the regular expression used to parse the lambda expression. ie:  x => x.firstName === vale.firstName
      */
     private expressionRegExp = new RegExp(/(.+[^=!><])(!={1,3}|<=|>=|>|<|={1,3})\s*(.+);\s*\}/);
     private expressions: Array<string> = new Array<string>();
@@ -36,7 +36,11 @@ export class ApiRequestBuilder {
      * @param parameters - object with properties representing the parameters in the expression.
      */
     public buildQueryFromExpression(expression: string, parameters?: any): Array<ApiQuery> {
+        console.log('this.expressions: before prepareexpression method', this.expressions);
         this.expressions = this.prepareExpression(expression.toString());
+        console.log('this.expressions: after prepareexpresion method ', this.expressions);
+        console.log('parameters: ', parameters);
+
         this.buildQueryPredicate(parameters);
         return this.query;
     }
@@ -52,31 +56,42 @@ export class ApiRequestBuilder {
     }
 
     private prepareExpression(expression: string): Array<string> {
+        console.log('r: before prepareExpression', expression);
+
         if (expression.includes(this.predicates.or)) {
             // TODO@zev.butler: Implement reading operators to support and, or, etc.
             throw new Error(`The operator ${this.predicates.or} (or) is not yet supported. Use && or write a custom query in the microservice.`)
         }
 
         expression = expression.slice(expression.indexOf(this.predicates.lambda) + 6);
-        return expression.split(this.predicates.and);
+        const r = expression.split(this.predicates.and);
+        console.log('r: after prepareExpression', r);
+        return r;
     }
 
     private buildQueryPredicate(parameters?: any): void {
+        console.log('parameters: ', parameters);
+        console.log('this.expressions', this.expressions);
+        
         if (!this.expressions) {
             throw new Error('No expressions were found to build predicates from.');
         }
 
         for (let predicate of this.expressions) {
             const predicateMatch = this.expressionRegExp.exec(predicate);
+                console.log('this.expressionRegExp: ', this.expressionRegExp);
+                console.log('this.expressions', this.expressions);
+                console.log('pedicatematch', predicateMatch);
+                console.log('predicatematchlength', predicateMatch.length);
 
-            // if (!predicateMatch || predicateMatch.length < 3) {
-            //     console.error('this.expressions', this.expressions);
-            //     console.error('pedicatematch', predicateMatch);
-            //     console.error('predicatematchlength', predicateMatch.length);
+            if (!predicateMatch || predicateMatch.length < 3) {
+                console.error('this.expressions', this.expressions);
+                console.error('pedicatematch', predicateMatch);
+                console.error('predicatematchlength', predicateMatch.length);
 
 
-            //     throw new Error(`Error in specified expression on: ${predicate}`);
-            // }
+                throw new Error(`Error in specified expression on: ${predicate}`);
+            }
 
             const name = this.parsePropertyName(predicateMatch[1]);
             const apiQueryOperator = this.parseOperator(predicateMatch[2]);
