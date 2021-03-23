@@ -1,7 +1,7 @@
 {
     "name": "hipolito-models",
     "private": false,
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "general models as blueprint for future projects",
     "files": [
         "dist"
