@@ -9,6 +9,7 @@ export * from './audit-log';
 export * from './category';
 export * from './credentials';
 export * from './document';
+export * from './exam';
 export * from './file-category';
 export * from './file-meta-data';
 export * from './file-type';
