@@ -3,6 +3,8 @@ import { Role } from './role';
 import { Category } from './category';
 import { RoleType } from './role-type';
 import { UserFavorite } from './user-favorite';
+import { Exam } from '.';
+import { ExamInfo } from './exam-info';
 
 export class User {
     public _id?: string;
@@ -11,6 +13,7 @@ export class User {
     public roles: Array<Role> = new Array<Role>();
     public linesOfService: Array<Category> = new Array<Category>();
     public userFavorites: Array<UserFavorite> = new Array<UserFavorite>();
+    public userEnrolledExams: Array<ExamInfo> = new Array<ExamInfo>();
     public createdDate?: Date;
     public modifiedDate?: Date;
 
