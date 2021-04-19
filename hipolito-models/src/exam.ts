@@ -1,6 +1,7 @@
 import { FileMetaData } from './file-meta-data';
 import { Category } from './category';
 import { LookupItem } from './lookup-item';
+import { Question } from './question';
 
 export class Exam {
     public _id!: string;
@@ -11,6 +12,7 @@ export class Exam {
     public createdDate!: Date;
     public modifiedDate!: Date;
     public version!: string;
+    public examQuestions: Array<Question> = new Array<Question>();
     public examFiles: Array<FileMetaData> = new Array<FileMetaData>();
     public createUuid!: string;
     public active!: boolean;
