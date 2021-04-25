@@ -38,5 +38,6 @@ export * from './base-api';
 export * from './create-tiles';
 export * from './requests';
 export * from './mdr-application-user';
+export * from './question-info';
 // end:ng42.barrel
 
